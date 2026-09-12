@@ -26,9 +26,8 @@ def run_dummy_server():
     server.serve_forever()
 
 # ==========================================================
-# ORIGINAL BOT CONFIGURATION & LOGIC (NEW TOKEN UPDATED)
+# ORIGINAL BOT CONFIGURATION & LOGIC (NEW TOKEN FIXED)
 # ==========================================================
-# यहाँ आपका नया टोकन अपडेट कर दिया गया है
 BOT_TOKEN = "8798532431:AAEgeNTNZjWfi8ZdZDZSVMhxY6J5yJ6Fl94"
 CHAT_ID = "8716548206"
 bot = telebot.TeleBot(BOT_TOKEN, threaded=True, num_threads=4)
@@ -116,4 +115,3 @@ if __name__ == "__main__":
     bot.delete_webhook(drop_pending_updates=True)
     bot.infinity_polling(skip_pending=True)
     
-  
