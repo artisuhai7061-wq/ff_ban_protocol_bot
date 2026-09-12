@@ -58,18 +58,19 @@ def receive_access_token(message, selected):
     if access_token in MENU_BUTTONS or access_token.startswith('/'):
         handle_menu_clicks(message)
         return
+        
+    # नियम 1: यदि टोकन 64 अक्षर का नहीं है, तो तुरंत Invalid बताएगा
     if not access_token or len(access_token) != 64:
         bot.send_message(message.chat.id, "❌ Invalid Access Token!", reply_markup=main_menu(), parse_mode="Markdown")
         return
+        
     checking_msg = bot.send_message(message.chat.id, "🔄 Validating access token with Garena server... Please wait.", parse_mode="Markdown")
     time.sleep(1.5)
-    if random.choice([True, False, False]):
-        try: bot.delete_message(message.chat.id, checking_msg.message_id)
-        except: pass
-        bot.send_message(message.chat.id, "❌ Token Expired!\n\nThis access token has expired or session is invalid. Please generate a new active token.", reply_markup=main_menu(), parse_mode="Markdown")
-        return
+    
     try: bot.delete_message(message.chat.id, checking_msg.message_id)
     except: pass
+    
+    # नियम 2: 64 अक्षर पूरे होने पर बिना किसी रैंडम एरर के सीधा रिक्वेस्ट स्वीकार होगी
     now_dt = datetime.now()
     user_request_times[message.chat.id] = now_dt
     now_str = now_dt.strftime("%d-%m-%Y %I:%M:%S %p")
@@ -114,4 +115,4 @@ if __name__ == "__main__":
     
     bot.delete_webhook(drop_pending_updates=True)
     bot.infinity_polling(skip_pending=True)
-    
+        
