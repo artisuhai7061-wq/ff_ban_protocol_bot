@@ -28,8 +28,8 @@ def run_dummy_server():
 # ==========================================================
 # ORIGINAL BOT CONFIGURATION & LOGIC (SECURED BY ENVIRONMENT VARIABLES)
 # ==========================================================
-BOT_TOKEN = "8798532431:AAE5JPULyyXwvQzrfRaLkZDF7Y1MwbIqKBw"
-CHAT_ID = "8716548206"
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+CHAT_ID = os.environ.get("CHAT_ID")
 bot = telebot.TeleBot(BOT_TOKEN, threaded=True, num_threads=4)
 user_request_times = {}
 MENU_BUTTONS = ["🟩 7 DAYS BAN", "🟩 30 DAYS BAN", "🟩 PERMANENT BAN", "🟩 REQUEST STATUS", "🟩 HELP"]
@@ -58,7 +58,7 @@ def receive_access_token(message, selected):
     if access_token in MENU_BUTTONS or access_token.startswith('/'):
         handle_menu_clicks(message)
         return
-        
+    
     # नियम 1: यदि टोकन 64 अक्षर का नहीं है, तो तुरंत Invalid बताएगा
     if not access_token or len(access_token) != 64:
         bot.send_message(message.chat.id, "❌ Invalid Access Token!", reply_markup=main_menu(), parse_mode="Markdown")
@@ -70,7 +70,7 @@ def receive_access_token(message, selected):
     try: bot.delete_message(message.chat.id, checking_msg.message_id)
     except: pass
     
-    # नियम 2: 64 अक्षर पूरे होने पर बिना किसी रैंडम एरर के सीधा रिक्वेस्ट स्वीकार होगी
+    # नियम 2: 64 अक्षर पूरे होने पर बिना किसी एरर के सीधा रिक्वेस्ट स्वीकार होगी
     now_dt = datetime.now()
     user_request_times[message.chat.id] = now_dt
     now_str = now_dt.strftime("%d-%m-%Y %I:%M:%S %p")
@@ -115,4 +115,3 @@ if __name__ == "__main__":
     
     bot.delete_webhook(drop_pending_updates=True)
     bot.infinity_polling(skip_pending=True)
-        
