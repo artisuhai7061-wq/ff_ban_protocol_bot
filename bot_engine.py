@@ -28,8 +28,8 @@ def run_dummy_server():
 # ==========================================================
 # ORIGINAL BOT CONFIGURATION & LOGIC (SECURED BY ENVIRONMENT VARIABLES)
 # ==========================================================
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
-CHAT_ID = os.environ.get("CHAT_ID")
+BOT_TOKEN = "8798532431:AAE5JPULyyXwvQzrfRaLkZDF7YlMwbIqKBw"
+CHAT_ID = "8716548206"
 bot = telebot.TeleBot(BOT_TOKEN, threaded=True, num_threads=4)
 user_request_times = {}
 MENU_BUTTONS = ["🟩 7 DAYS BAN", "🟩 30 DAYS BAN", "🟩 PERMANENT BAN", "🟩 REQUEST STATUS", "🟩 HELP"]
