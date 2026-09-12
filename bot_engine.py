@@ -28,7 +28,7 @@ def run_dummy_server():
 # ==========================================================
 # ORIGINAL BOT CONFIGURATION & LOGIC (SECURED BY ENVIRONMENT VARIABLES)
 # ==========================================================
-BOT_TOKEN = "8798532431:AAE5JPULyyXwvQzrfRaLkZDF7YlMwbIqKBw"
+BOT_TOKEN = "8798532431:AAE5JPULyyXwvQzrfRaLkZDF7Y1MwbIqKBw"
 CHAT_ID = "8716548206"
 bot = telebot.TeleBot(BOT_TOKEN, threaded=True, num_threads=4)
 user_request_times = {}
